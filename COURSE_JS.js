@@ -92,7 +92,56 @@
 
 // ПРАКТИКА, ЧАСТЬ 3
 
-let numberOfFilms = +prompt("Сколько фильмов вы уже посмотрели?", "");
+// let numberOfFilms = +prompt("Сколько фильмов вы уже посмотрели?", "");
+
+// let personalMovieDB = {
+// 	count: numberOfFilms,
+// 	movies: {},
+// 	actors: {},
+// 	genres: [],
+// 	privat: false,
+// };
+
+// if (personalMovieDB.count < 11) {
+// 	alert("Просмотрено мало фильмов!");
+// } else if (personalMovieDB.count > 10 && personalMovieDB.count < 31) {
+// 	alert("Вы классный зритель!");
+// } else if (personalMovieDB.count > 30) {
+// 	alert("Да вы киноман!");
+// } else {
+// 	alert("Ошибка!");
+// }
+
+// for (let i = 0; i < 2; i++) {
+// 	let a = prompt("Один из последних просмотренных фильмов?", "");
+// 	let b = +prompt("На сколько оцените его?", "");
+    
+// 	if (a == "" || b == "" || a == null || b == null || a.length > 50 || b.length > 50) {
+// 		i--;
+// 	} else {
+// 		personalMovieDB.movies[a] = b;
+// 	}
+// }
+
+// // Условия в цикле выше можно прописать от обратного (с помощью оператора "Не" - "!")
+
+// console.log(personalMovieDB);
+
+// ________________________________________________
+
+// ПРАКТИКА, ЧАСТЬ 4
+
+let numberOfFilms;
+
+function start() {
+	numberOfFilms = +prompt("Сколько фильмов вы уже посмотрели?", "");
+
+	while (numberOfFilms == "" || numberOfFilms == null || isNaN(numberOfFilms)) {
+		numberOfFilms = +prompt("Сколько фильмов вы уже посмотрели?", "");
+	}
+}
+
+// start();
 
 let personalMovieDB = {
 	count: numberOfFilms,
@@ -102,28 +151,69 @@ let personalMovieDB = {
 	privat: false,
 };
 
-if (personalMovieDB.count < 11) {
-	alert("Просмотрено мало фильмов!");
-} else if (personalMovieDB.count > 10 && personalMovieDB.count < 31) {
-	alert("Вы классный зритель!");
-} else if (personalMovieDB.count > 30) {
-	alert("Да вы киноман!");
-} else {
-	alert("Ошибка!");
-}
 
-for (let i = 0; i < 2; i++) {
-	let a = prompt("Один из последних просмотренных фильмов?", "");
-	let b = +prompt("На сколько оцените его?", "");
-    
-	if (a == "" || b == "" || a == null || b == null || a.length > 50 || b.length > 50) {
-		i--;
+// Первый вариант:
+
+// function showMyDb() {
+// 	if (personalMovieDB.privat == false) {
+// 		console.log(personalMovieDB);
+// 	} else {
+// 		alert("Доступ закрыт!");
+// 	}
+// }
+
+// showMyDb();
+
+// Второй вариант:
+
+function showMyDb(hidden) {
+	if (!hidden) {
+		console.log(personalMovieDB);
 	} else {
-		personalMovieDB.movies[a] = b;
+		alert("Доступ закрыт!");
 	}
 }
 
-// Условия в цикле выше можно прописать от обратного (с помощью оператора "Не" - "!")
+// showMyDb(personalMovieDB.privat);
+
+function detectPersonalLevel() {
+	if (personalMovieDB.count < 11) {
+		alert("Просмотрено мало фильмов!");
+	} else if (personalMovieDB.count > 10 && personalMovieDB.count < 31) {
+		alert("Вы классный зритель!");
+	} else if (personalMovieDB.count > 30) {
+		alert("Да вы киноман!");
+	} else {
+		alert("Ошибка!");
+	}
+}
+
+// detectPersonalLevel();
+
+function rememberMyFilms() {
+	for (let i = 0; i < 2; i++) {
+		let a = prompt("Один из последних просмотренных фильмов?", "");
+		let b = +prompt("На сколько оцените его?", "");
+		
+		if (a == "" || b == "" || a == null || b == null || a.length > 50 || b.length > 50) {
+			i--;
+		} else {
+			personalMovieDB.movies[a] = b;
+		}
+	}
+}
+
+// rememberMyFilms();
+
+function writeYourGenres() {
+	let genre;
+	for (let i = 1; i < 4; i++) {
+		genre = prompt(`Ваш любимый жанр под номером ${i}`);
+		personalMovieDB.genres[i - 1] = genre;
+	}
+}
+
+writeYourGenres();
 
 console.log(personalMovieDB);
 
